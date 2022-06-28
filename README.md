@@ -35,7 +35,7 @@
 
 ##
 
-### Imagem do projeto em um dispositivo móvel
+### Imagem do projeto em um desktop
 ![desktop.png](https://github.com/LucasCosta0011/MVC-PHP/blob/main/desktop.png)
 
 ##
