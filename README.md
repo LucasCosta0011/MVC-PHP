@@ -11,8 +11,6 @@ Neste projeto estou usando os conceitos de POO para criar um MVC em php.
 
 ## Objetivos
 
-##
-
 ### Criar um MVC com códigos que julgo pragmáticos e performáticos.
 
 ### Fácil compreensão
