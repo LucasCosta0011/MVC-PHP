@@ -1,15 +1,16 @@
 <?php
-    // Recebendo os dados
-    include '../CONTROLLER/Connection.php';
+    
     include '../CONTROLLER/OperacaoAluno.php';
     include_once '../MODEL/Aluno.php';
 
+    // Recebendo os dados
     $idAluno = $_POST['idAluno'];
     $nome = $_POST['nome'];
     $tel = $_POST['tel'];
     $status = $_POST['status'];
 
     if(isset($_POST['salvar'])){
+        
         try {
             // Colocando dados na instância da classe (objeto)
             $dadosAluno = new Aluno();
@@ -23,14 +24,18 @@
         } catch (PDOException $ex) {
             echo "Erro: " . $ex;
         }
+
     }else if(isset($_POST['excluir'])){
+
         try {
             $opAluno = new OperacaoAluno();
             $opAluno->excluirAluno($idAluno);
         } catch (PDOException $ex) {
             echo "Erro: " . $ex;
         }
+
     }else if(isset($_POST['alterar'])){
+
         try {
             $aluno = new Aluno();
             $aluno->setNome($nome);
@@ -43,7 +48,9 @@
         } catch (PDOException $ex) {
             echo "Erro: " . $ex;
         }
+
     }else if(isset($_POST['buscar'])){
+
         try {
             $opAluno = new OperacaoAluno();
             $retornoAluno = $opAluno->buscarAluno($idAluno);
@@ -53,6 +60,7 @@
         } catch (PDOException $ex) {
             echo "Erro: " . $ex;
         }
+
     }
 
     

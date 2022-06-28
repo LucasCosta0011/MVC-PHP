@@ -2,29 +2,65 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Exemplo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     </head>
     <body>
-        <form action="TelaAluno.php" method="post">
-            <label for="id">ID:</label>
-            <input type="text" placeholder="ID: " id="id" name="idAluno" value="0" /></br></br>
+        <div class="container">
+            <h2 class="text-center mt-3">Aluno</h2>
 
-            <label for="nome">Seu nome:</label>
-            <input type="text" placeholder="Seu nome:" id="nome" name="nome" /></br></br>
+            <form action="TelaAluno.php" method="post">
+                
+                <div class="row mt-5">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="form-label" for="id">ID:</label>
+                        <input class="form-control" type="text" placeholder="ID: " id="id" name="idAluno" value="0" />
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="form-label" for="status">Status:</label>
+                        <select class="form-select" id="status" name="status">
+                            <option selected value="ativo">Ativo</option>
+                            <option value="desativado">Desativado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="form-label" for="nome">Seu nome:</label>
+                        <input class="form-control" type="text" placeholder="Seu nome:" id="nome" name="nome" />
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="form-label" for="tel">Seu telefone:</label>
+                        <input class="form-control" type="tel" placeholder="Seu telefone:" id="tel" name="tel" />
+                    </div>
+
+                </div>
             
-            <label for="tel">Seu telefone:</label>
-            <input type="tel" placeholder="Seu telefone:" id="tel" name="tel" /></br></br>
-            
-            <label for="status">Status:</label>
-            <select id="status" name="status">
-                <option value="ativo">Ativo</option>
-                <option value="desativado">Desativado</option>
-            </select></br></br>
-            
-            <input type="submit" name="salvar" class="btns" id="btnSalvar" value="Salvar" />
-            <input type="submit" name="excluir" class="btns" id="btnExcluir" value="Excluir" />
-            <input type="submit" name="alterar" class="btns" id="btnAlterar" value="Alterar" />
-            <input type="submit" name="buscar" class="btns" id="btnBuscar" value="Buscar" />
-        </form>
+                <div class="row mt-3 mt-2">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mt-2">
+                        <input class="btn btn-success form-control" type="submit" name="salvar" class="btns" id="btnSalvar" value="Salvar" />
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mt-2">
+                        <input class="btn btn-danger form-control" type="submit" name="excluir" class="btns" id="btnExcluir" value="Excluir" />
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mt-2">
+                        <input class="btn btn-warning form-control" type="submit" name="alterar" class="btns" id="btnAlterar" value="Alterar" />
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mt-2">
+                        <input class="btn btn-info form-control" type="submit" name="buscar" class="btns" id="btnBuscar" value="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>

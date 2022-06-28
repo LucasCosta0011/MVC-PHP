@@ -1,11 +1,12 @@
 <?php
+    require_once '../CONTROLLER/Database.php';
     class OperacaoAluno {
+
         function buscarAluno($idAluno){
             $sqlBuscar = "SELECT * FROM aluno WHERE id_aluno = ". $idAluno;
 
             try{
-                include '../CONTROLLER/Connection.php';
-                $pst = $conn->query($sqlBuscar);
+                $pst = Database::conexao()->query($sqlBuscar);
                 
                 if(!($pst->rowCount() === 1)){
                     echo "<script>alert('Nenhum registro encotrado!')</script>";
@@ -20,6 +21,7 @@
                     $aluno->setStatus($row['status']);
                 }
                 return $aluno;
+
             }catch(PDOException $ex){
                 echo $ex;
             }
@@ -30,8 +32,7 @@
                     . "WHERE id_aluno = ?";
             
             try {
-                include '../CONTROLLER/Connection.php';
-                $pst = $conn->prepare($sqlAtualizar);
+                $pst = Database::conexao()->prepare($sqlAtualizar);
                 
                 $pst->bindValue(1, $aluno->getNome(), PDO::PARAM_STR);
                 $pst->bindValue(2, $aluno->getTel(), PDO::PARAM_INT);
@@ -51,10 +52,9 @@
         
         function excluirAluno($idAluno){
             $sqlExcluir = "DELETE FROM aluno WHERE id_aluno = ".$idAluno;
-            
+
             try{
-                include '../CONTROLLER/Connection.php';
-                $pst = $conn->prepare($sqlExcluir);
+                $pst = Database::conexao()->prepare($sqlExcluir);
                 if($pst->execute() == 1){
                     echo "<script>alert('Aluno excluído com sucesso!')</script>";
                 }else{
@@ -63,14 +63,14 @@
             }catch(PDOException $ex){
                 echo "Erro: ". $ex;
             }
+
         }
 
         function salvarAluno(Aluno $dados){
             $sqlSalvar='insert into aluno (nome_aluno, tel_aluno, status) values (?,?,?)';
             
             try{
-                include '../CONTROLLER/Connection.php';
-                $pst = $conn->prepare($sqlSalvar);
+                $pst = Database::conexao()->prepare($sqlSalvar);
 
                 $pst->bindValue(1, $dados->getNome(), PDO::PARAM_STR);
                 $pst->bindValue(2, $dados->getTel(), PDO::PARAM_INT);
@@ -84,5 +84,6 @@
             }catch(PDOException $ex){
                 echo "Erro: ".$ex;
             }
+
         }   
     }
