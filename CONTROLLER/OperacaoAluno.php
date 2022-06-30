@@ -2,6 +2,10 @@
     require_once '../CONTROLLER/Database.php';
     class OperacaoAluno {
 
+        function mensagem($mensagem){
+            echo "<script>alert('" . $mensagem . "')</script>";
+        }
+
         function buscarAluno($idAluno){
             $sqlBuscar = "SELECT * FROM aluno WHERE id_aluno = ". $idAluno;
 
@@ -9,7 +13,7 @@
                 $pst = Database::conexao()->query($sqlBuscar);
                 
                 if(!($pst->rowCount() === 1)){
-                    echo "<script>alert('Nenhum registro encotrado!')</script>";
+                    mensagem('Nenhum registro encotrado!');
                     exit();
                 }
                 
@@ -23,7 +27,7 @@
                 return $aluno;
 
             }catch(PDOException $ex){
-                echo $ex;
+                echo "Erro: " .  $ex;
             }
         }
         
@@ -38,15 +42,17 @@
                 $pst->bindValue(2, $aluno->getTel(), PDO::PARAM_INT);
                 $pst->bindValue(3, $aluno->getStatus(), PDO::PARAM_STR);
                 $pst->bindValue(4, $aluno->getIdAluno(), PDO::PARAM_INT);
-                
-                if($pst->execute() == 1){
-                    echo "<script>alert('Aluno atualizado com sucesso!')</script>";
+
+                $pst->execute();
+
+                if($pst->rowCount() === 1){
+                    mensagem('Aluno atualizado com sucesso!');
                 }else{
-                    echo "<script>alert('Erro, aluno não foi atualizado!')</script>";
+                    mensagem('Erro, aluno não foi encontrado!');
                 }
                 
             } catch (PDOException $ex) {
-                echo "Erro: " . $ex;
+                echo "Erro: " .  $ex;
             }
         }
         
@@ -55,13 +61,15 @@
 
             try{
                 $pst = Database::conexao()->prepare($sqlExcluir);
-                if($pst->execute() == 1){
-                    echo "<script>alert('Aluno excluído com sucesso!')</script>";
+                $pst->execute();
+
+                if($pst->rowCount() === 1){
+                    mensagem('Aluno excluído com sucesso!');
                 }else{
-                    echo "<script>alert('Erro, aluno não foi excluído!')</script>";
+                    mensagem('Erro, o ID não foi encontrado!');
                 }
             }catch(PDOException $ex){
-                echo "Erro: ". $ex;
+                echo "Erro: " .  $ex;
             }
 
         }
@@ -75,14 +83,15 @@
                 $pst->bindValue(1, $dados->getNome(), PDO::PARAM_STR);
                 $pst->bindValue(2, $dados->getTel(), PDO::PARAM_INT);
                 $pst->bindValue(3, $dados->getStatus(), PDO::PARAM_STR);
-                if($pst->execute() == 1){
-                    echo "<script>alert('Aluno cadastrado com sucesso!')</script>";
+                $pst->execute();
+                if($pst->rowCount() === 1){
+                    mensagem('Aluno cadastrado com sucesso!');
                 }else{
-                    echo "<script>alert('Erro, aluno não foi cadastrado!')</script>";
+                    mensagem('Erro, aluno não foi não encontrado!');
                 }
                 
             }catch(PDOException $ex){
-                echo "Erro: ".$ex;
+                echo "Erro: " .  $ex;
             }
 
         }   
