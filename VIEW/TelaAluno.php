@@ -1,7 +1,7 @@
 <?php
-    include '../CONTROLLER/OperacaoAluno.php';
-    include_once '../MODEL/Aluno.php';
-    include '../CONTROLLER/Utilidades.php';
+    include_once '../MODEL/OperacaoAluno.php';
+    include_once '../CONTROLLER/Aluno.php';
+    include_once '../CONTROLLER/Utilidades.php';
 
     if(isset($_POST['salvar'])){
         
