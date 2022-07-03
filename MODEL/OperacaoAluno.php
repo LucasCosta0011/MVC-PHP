@@ -72,7 +72,6 @@
             }catch(PDOException $ex){
                 echo "Erro: " .  $ex;
             }
-
         }
 
         function salvarAluno(Aluno $dados){
